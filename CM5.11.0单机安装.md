@@ -31,7 +31,7 @@
 ## 7.配置cm agent 修改文件 
      vi /opt/cloudera-manager/cm-5.11.0/etc/cloudera-scm-agent/config.ini
      修改: server_host=m1 (指定server是管理点)
-## 8.拷贝mysql的驱动包到 /usr/share/java (名称改为mysql-connector-java.jar,没有文件夹就创建)
+## 8.拷贝mysql的驱动包
      cp mysql-connector-java.jar /usr/share/java
      cp mysql-connector-java.jar /opt/cm-5.11.0/share/cmf/lib/
 ## 9.Mysql 创建用户
