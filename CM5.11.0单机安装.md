@@ -2,14 +2,13 @@
     vi /etc/hosts
     192.168.190.134 m1
     关闭防火墙
-    chkconfig iptables off
-    service iptables stop 
+    service iptables stop
+    chkconfig iptables off 
     关闭selinux
     vi /etc/selinux/config 
     SELINUX=disabled
 ## 2.安装jdk
-    cd /usr/local;
-    tar –zxvf jdk-7u80-linux-x64.tar.gz
+    tar -zxvf jdk-7u80-linux-x64.tar.gz -C /usr/local/
     
     vi /etc/profile
     #set java environment
@@ -22,7 +21,7 @@
      yum install -y mysql mysql-server mysql-devel
      chkconfig mysqld on
      service mysqld start
-     mysql                                ## 启动MySQL
+     mysql                                
      mysql> use mysql;
      mysql> grant all privileges on *.* to 'root'@'%' identified by 'thinker' with grant option;
      mysql> flush privileges;
@@ -35,9 +34,10 @@
 ## 6.创建用户
      useradd --system --no-create-home --shell=/bin/false --comment "Cloudera SCM User" cloudera-scm
 ## 7.配置文件 
-     vi /opt/cloudera-manager/cm-5.11.0/etc/cloudera-scm-agent/config.ini
+     vi /opt/cm-5.11.0/etc/cloudera-scm-agent/config.ini
      修改: server_host=m1 (指定server是管理点)
 ## 8.拷贝驱动包
+     mkdir /usr/share/java
      cp mysql-connector-java.jar /usr/share/java
      cp mysql-connector-java.jar /opt/cm-5.11.0/share/cmf/lib/
 ## 9.Mysql 创建用户
@@ -52,6 +52,7 @@
      /opt/cm-5.11.0/share/cmf/schema/scm_prepare_database.sh mysql cm -h localhost -uroot -p --scm-host master root thinker scm
 ## 11.copy parcel文件并授权:(注意如果不赋予权限安装cm不会出现本地源的parcel)
      cp /soft/CDH-* manifest.json /opt/cloudera/parcel-repo/
+     cp /soft/manifest.json /opt/cloudera/parcel-repo/
      cd /opt/cloudera/parcel-repo/
      mv CDH-5.11.0-1.cdh5.11.0.p0.34-el6.parcel.sha1 CDH-5.11.0-1.cdh5.11.0.p0.34-el6.parcel.sha
      chown cloudera-scm:cloudera-scm /opt/cloudera/parcel-repo/*
