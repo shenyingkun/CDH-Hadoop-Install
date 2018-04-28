@@ -29,7 +29,7 @@
      mysql> flush privileges;
 ## 4.安装依赖包
      yum install -y chkconfig python bind-utils psmisc libxslt zlib sqlite cyrus-sasl-plain cyrus-sasl-gssapi fuse fuse-libs redhat-lsb
-## 5.安装cm server和angent
+## 5.安装server和angent
      tar -zxvf cloudera-manager-el6-cm5.11.0_x86_64.tar.gz.tar -C /opt/
 ## 6.创建用户
      useradd --system --no-create-home --shell=/bin/false --comment "Cloudera SCM User" cloudera-scm
@@ -50,13 +50,13 @@
      create database hue DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 ## 10.执行脚本(只在管理点执行）
      /opt/cm-5.11.0/share/cmf/schema/scm_prepare_database.sh mysql cm -h localhost -uroot -p --scm-host master root thinker scm
-## 11.copy parcel文件并授权:(注意如果不赋予权限安装cm不会出现本地源的parcel)
+## 11.copy parcel文件并授权(不赋予权限web不出现本地源parcel)
      cp /soft/CDH-* manifest.json /opt/cloudera/parcel-repo/
      cp /soft/manifest.json /opt/cloudera/parcel-repo/
      cd /opt/cloudera/parcel-repo/
      mv CDH-5.11.0-1.cdh5.11.0.p0.34-el6.parcel.sha1 CDH-5.11.0-1.cdh5.11.0.p0.34-el6.parcel.sha
      chown cloudera-scm:cloudera-scm /opt/cloudera/parcel-repo/*
      chown cloudera-scm:cloudera-scm /opt/cloudera/parcels/*
-## 12.启动cm
+## 12.启动
      /opt/cm-5.11.0/etc/init.d/cloudera-scm-server start
      /opt/cm-5.11.0/etc/init.d/cloudera-scm-agent start
