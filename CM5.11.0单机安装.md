@@ -1,4 +1,4 @@
-## 1.配置hosts
+## 1.配置主机信息
     vi /etc/hosts
     192.168.190.134 m1
 ## 2.安装jdk
@@ -12,7 +12,7 @@
     export PATH=$PATH:$JAVA_HOME/bin
      
     source /etc/profile
-## 3.配置安装mysql
+## 3.配置安装mysql数据库
      yum install -y mysql mysql-server mysql-devel
      chkconfig mysqld on
      service mysqld start
