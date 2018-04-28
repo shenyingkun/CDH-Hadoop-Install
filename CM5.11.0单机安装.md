@@ -18,36 +18,36 @@
      
     source /etc/profile
 ## 3.配置安装mysql数据库
-     yum install -y mysql mysql-server mysql-devel
-     chkconfig mysqld on
-     service mysqld start
-     mysql                                
-     mysql> use mysql;
-     mysql> grant all privileges on *.* to 'root'@'%' identified by 'thinker' with grant option;
-     mysql> flush privileges;
-     mysql> delete from user where host !='%';
-     mysql> flush privileges;
+    yum install -y mysql mysql-server mysql-devel
+    chkconfig mysqld on
+    service mysqld start
+    mysql                                
+    mysql> use mysql;
+    mysql> grant all privileges on *.* to 'root'@'%' identified by 'thinker' with grant option;
+    mysql> flush privileges;
+    mysql> delete from user where host !='%';
+    mysql> flush privileges;
 ## 4.安装依赖包
-     yum install -y chkconfig python bind-utils psmisc libxslt zlib sqlite cyrus-sasl-plain cyrus-sasl-gssapi fuse fuse-libs redhat-lsb
+    yum install -y chkconfig python bind-utils psmisc libxslt zlib sqlite cyrus-sasl-plain cyrus-sasl-gssapi fuse fuse-libs redhat-lsb
 ## 5.安装server和angent
-     tar -zxvf cloudera-manager-el6-cm5.11.0_x86_64.tar.gz.tar -C /opt/
+    tar -zxvf cloudera-manager-el6-cm5.11.0_x86_64.tar.gz.tar -C /opt/
 ## 6.创建用户
-     useradd --system --no-create-home --shell=/bin/false --comment "Cloudera SCM User" cloudera-scm
+    useradd --system --no-create-home --shell=/bin/false --comment "Cloudera SCM User" cloudera-scm
 ## 7.配置文件 
-     vi /opt/cm-5.11.0/etc/cloudera-scm-agent/config.ini
-     修改: server_host=m1 (指定server是管理点)
+    vi /opt/cm-5.11.0/etc/cloudera-scm-agent/config.ini
+    修改: server_host=m1 (指定server是管理点)
 ## 8.拷贝驱动包
-     mkdir /usr/share/java
-     cp mysql-connector-java.jar /usr/share/java
-     cp mysql-connector-java.jar /opt/cm-5.11.0/share/cmf/lib/
+    mkdir /usr/share/java
+    cp mysql-connector-java.jar /usr/share/java
+    cp mysql-connector-java.jar /opt/cm-5.11.0/share/cmf/lib/
 ## 9.Mysql 创建用户
-     grant all privileges on *.* to 'root'@'m1' identified by 'thinker' with grant option;
-     flush privileges;
+    grant all privileges on *.* to 'root'@'m1' identified by 'thinker' with grant option;
+    flush privileges;
      
-     create database hive DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-     create database oozie DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-     create database amon DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-     create database hue DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+    create database hive DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+    create database oozie DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+    create database amon DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+    create database hue DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 ## 10.执行脚本(只在管理点执行）
      /opt/cm-5.11.0/share/cmf/schema/scm_prepare_database.sh mysql cm -h localhost -uroot -p --scm-host master root thinker scm
 ## 11.copy parcel文件并授权(不赋予权限web不出现本地源parcel)
