@@ -1,6 +1,12 @@
 ## 1.配置主机信息
     vi /etc/hosts
     192.168.190.134 m1
+    关闭防火墙
+    chkconfig iptables off
+    service iptables stop 
+    关闭selinux
+    vi /etc/selinux/config 
+    SELINUX=disabled
 ## 2.安装jdk
     cd /usr/local;
     tar –zxvf jdk-7u80-linux-x64.tar.gz
@@ -49,6 +55,8 @@
      chown cloudera-scm:cloudera-scm /opt/cloudera/parcels/*
 ## 12.copy parcel文件
      cp /soft/CDH-* manifest.json /opt/cloudera/parcel-repo/
+     cd /opt/cloudera/parcel-repo/
+     mv CDH-5.11.0-1.cdh5.11.0.p0.34-el6.parcel.sha1 CDH-5.11.0-1.cdh5.11.0.p0.34-el6.parcel.sha
 ## 13.启动cm
      /opt/cm-5.11.0/etc/init.d/cloudera-scm-server start
      /opt/cm-5.11.0/etc/init.d/cloudera-scm-agent start
