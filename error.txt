@@ -1,4 +1,4 @@
-1.sqoop 报错
+1.sqoop 抽取数据报错
     Error: JAVA_HOME is not set and could not be found.
     解决办法：
     vi /etc/hadoop/conf/hadoop-env.sh
