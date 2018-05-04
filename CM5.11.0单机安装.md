@@ -51,7 +51,7 @@
 ## 10.执行脚本(只在管理点执行）
      /opt/cm-5.11.0/share/cmf/schema/scm_prepare_database.sh mysql cm -h localhost -uroot -p --scm-host master root thinker scm
 ## 11.copy parcel文件并授权(不赋予权限web不出现本地源parcel)
-     cp /soft/CDH-* manifest.json /opt/cloudera/parcel-repo/
+     cp /soft/CDH-5.11.0/CDH-* /opt/cloudera/parcel-repo/
      cp /soft/manifest.json /opt/cloudera/parcel-repo/
      cd /opt/cloudera/parcel-repo/
      mv CDH-5.11.0-1.cdh5.11.0.p0.34-el6.parcel.sha1 CDH-5.11.0-1.cdh5.11.0.p0.34-el6.parcel.sha
