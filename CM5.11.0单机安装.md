@@ -5,7 +5,8 @@
     service iptables stop
     chkconfig iptables off 
     关闭selinux
-    vi /etc/selinux/config 
+    setenforce 0                    ##临时关闭
+    vi /etc/selinux/config          ##重启生效
     SELINUX=disabled
 ## 2.安装jdk
     tar -zxvf jdk-7u80-linux-x64.tar.gz -C /usr/local/
