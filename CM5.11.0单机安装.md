@@ -41,13 +41,14 @@
     cp mysql-connector-java.jar /usr/share/java
     cp mysql-connector-java.jar /opt/cm-5.11.0/share/cmf/lib/
 ## 9.Mysql 创建用户
-    grant all privileges on *.* to 'root'@'m1' identified by 'thinker' with grant option;
-    flush privileges;
-     
-    create database hive DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-    create database oozie DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-    create database amon DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-    create database hue DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+    mysql -uroot -p
+    mysql> grant all privileges on *.* to 'root'@'m1' identified by 'thinker' with grant option;
+    mysql> flush privileges;
+    mysql> create database hive DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+    mysql> create database oozie DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+    mysql> create database amon DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+    mysql>create database hue DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+    
 ## 10.执行脚本(只在管理点执行）
      /opt/cm-5.11.0/share/cmf/schema/scm_prepare_database.sh mysql cm -h localhost -uroot -p --scm-host master root thinker scm
 ## 11.copy parcel文件并授权(不赋予权限web不出现本地源parcel)
