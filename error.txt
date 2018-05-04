@@ -1,4 +1,4 @@
-1.sqoop 抽取数据报错
+1.sqoop 抽取数据报错：
     Error: JAVA_HOME is not set and could not be found.
     解决办法：
     vi /etc/hadoop/conf/hadoop-env.sh
@@ -6,3 +6,9 @@
     export JAVA_HOME=/usr/local/jdk1.7.0_80
     export LASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
     export PATH=$PATH:$JAVA_HOME/bin
+2.集群设置报错：
+  首个失败:主机 cdh-server1 (id=1) 上的客户端配置 (id=2) 已使用 1 退出
+  解决办法：
+  可能是mysql 数据库配置导致
+  grant all privileges on *.* to 'root'@'cdh-server1' identified by 'thinker' with grant option; ###重新授MySQL权限
+
